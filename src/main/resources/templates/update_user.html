@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Service Desk</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Service Desk</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/users}">Пользователи</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Выйти из системы</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">You've successfully registered
+                    to our app!</div>
+            </div>
+            <div class="card-header">
+                <h2 class="text-center">Обновить данные пользователя</h2>
+            </div>
+            <div class="card-body">
+
+
+                <form method="post" role="form" th:action="@{/user/save/{id}(id=${user.id})}" th:object="${user}">
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Имя</label>
+                        <input class="form-control"
+                               id="firstName"
+                               name="firstName"
+                               placeholder="Введите имя"
+                               th:field="*{name}"
+                               type="text"
+                        />
+                        <p th:errors="*{name}" class="text-danger"
+                           th:if="${#fields.hasErrors('name')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Фамилия</label>
+                        <input class="form-control"
+                               id="lastName"
+                               name="lastName"
+                               placeholder="Введите фамилию"
+                               th:field="*{lastname}"
+                               type="text"
+                        />
+                        <p th:errors="*{lastname}" class="text-danger"
+                           th:if="${#fields.hasErrors('lastname')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Логин</label>
+                        <input class="form-control"
+                               id="login"
+                               name="login"
+                               placeholder="Введите логин"
+                               th:field="*{login}"
+                               type="text"
+                        />
+                        <p th:errors="*{login}" class="text-danger"
+                           th:if="${#fields.hasErrors('login')}">
+                        </p>
+                    </div>
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control"
+                               id="email"
+                               name="email"
+                               placeholder="Введите email"
+                               th:field="*{email}"
+                               type="email"
+                        />
+                        <p th:errors="*{email}" class="text-danger"
+                           th:if="${#fields.hasErrors('email')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label" >Пароль</label>
+                        <input class="form-control"
+                               id="password"
+                               name="password"
+                               placeholder="Введите пароль"
+                               th:field="*{password}"
+                               type="text"
+                        />
+                        <p th:errors="*{password}" class="text-danger"
+                           th:if="${#fields.hasErrors('password')}">
+                        </p>
+                    </div>
+
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Подразделение</label>
+                        <p><select id='department' th:field="*{department}">
+                            <option value="Организационный отдел">Организационный отдел</option>
+                            <option value="Управление цифрового развития">Управление цифрового развития</option>
+                            <option value="Отдел поддержки внутренних пользователей">Отдел поддержки внутренних пользователей</option>
+                            <option value="Операционное управление">Операционное управление</option>
+                            <option value="Управление кассовых операций">Управление кассовых операций</option>
+                            <option value="Бухгалтерия">Бухгалтерия</option>
+                        </select><br>
+                        <p th:errors="*{department}" class="text-danger"
+                           th:if="${#fields.hasErrors('department')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Должность</label>
+                        <input class="form-control"
+                               id="position"
+                               name="position"
+                               placeholder="Введите должность"
+                               th:field="*{position}"
+                               type="text"
+                        />
+                        <p th:errors="*{position}" class="text-danger"
+                           th:if="${#fields.hasErrors('position')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Телефон</label>
+                        <input class="form-control"
+                               id="telephone"
+                               name="telephone"
+                               placeholder="Введите номер телефона"
+                               th:field="*{phone}"
+                               type="text"
+                        />
+                        <p th:errors="*{phone}" class="text-danger"
+                           th:if="${#fields.hasErrors('phone')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <button class="btn btn-primary" type="submit">Обновить</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

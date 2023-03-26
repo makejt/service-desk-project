@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Combo&display=swap');
+
+body {
+    margin: 0;
+}
+
+mark {
+    background: #a1e5c1;
+}
+
+.header{
+    height: 100px;
+    background-color: #59c097;
+}
+
+.main {
+    height: auto;
+    width: auto;
+    background-color: #a1e5c1;
+}
+
+
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+}
+
+.container {
+    padding: 10px;
+    max-width: 85vw;
+    height: inherit;
+    margin: auto;
+}
+
+.header__container {
+    background-color: #ffffff;
+
+}
+
+.main__container {
+    background-color: #ffffff;
+}
+
+
+.navigation {
+    width: 100%;
+    height: 100%;
+    background-color: #e0ffef;
+}
+
+.h1 {
+    color: #169663;;
+    font-size: xxx-large;
+    font-family: 'Combo', cursive;
+    text-shadow: 5px 5px 2px #a1e5c1;
+}
+
+.slogan {
+    font-style: oblique;
+}
+
+.h2 {
+    color: #59c097;
+    text-align-last: center;
+}
+
+.img {
+    display: inline-block;
+    vertical-align:middle;
+    width: 110px;
+    height: 120px;
+}
+
+.h1 {
+    display: inline-block;
+    height: inherit;
+    vertical-align:middle;
+}
+
+.img1 {
+    width: 25%;
+    height: 25%;
+    object-fit:cover;
+    float: left;
+}
+
+.img3-container{
+    width: fit-content;
+    height: fit-content;
+}
+.img3 {
+    width: 25%;
+    height: 25%;
+    object-fit:cover;
+    float: right;
+}
+
+.ul {
+    width: 97%;
+    height: 100%;
+    background-color: #e0ffef;
+    background-size: auto;
+}
+
+A {
+    color: #030303;
+}
+
+A:visited {
+    color: #030303;
+}
+A {
+    text-decoration: none;
+}
+A:hover {
+    text-decoration: underline;
+    color: #030303;
+}
+
+
+ul.ul li {
+    display: inline;
+}
+
+.address {
+    text-align: center;
+}
+
+@media screen and (max-width:620px) {
+    .h1 {
+        font-size: xx-large;
+    }
+}

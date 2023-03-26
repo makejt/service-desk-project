@@ -26,7 +26,7 @@
         }
 
         .h1 {
-            color: #169663;
+            color: #169663;;
             font-size: xxx-large;
             font-family: 'Combo', cursive;
             text-shadow: 5px 5px 2px #a1e5c1;
@@ -60,12 +60,12 @@
     <div class="container main__container" th:style="'background-image:url(' + @{img/00.jpg} + '); background-repeat: no-repeat, repeat;'">
 
 
-    <h2 class="h2">Редактирование обращения</h2>
+    <h2 class="h2" th:align="center">Редактирование обращения</h2>
             </div>
             <div class="card-body">
 
-
-                <form method="post" role="form" th:action="@{/appeals/save/{id}(id=${updAppeal.id})}" th:object="${updAppeal}">
+<div>
+                <form th:align="center" method="post" role="form" th:action="@{/appeals/save_admin/{id}(id=${updAppeal.id})}" th:object="${updAppeal}">
 
                     <div class="form-group mb-3">
                         <label class="form-label">Тема</label>
@@ -96,14 +96,45 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label class="form-label">Секция</label>
+                        <input class="form-control"
+                               id="section"
+                               name="section"
+                               placeholder="Введите тему"
+                               th:field="*{section}"
+                               type="text"
+                        />
+                        <p th:errors="*{theme}" class="text-danger"
+                           th:if="${#fields.hasErrors('section')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Исполнитель</label>
+                        <input class="form-control"
+                               id="manager"
+                               name="manager"
+                               placeholder="Введите тему"
+                               th:field="*{manager}"
+                               type="text"
+                        />
+                        <p th:errors="*{theme}" class="text-danger"
+                           th:if="${#fields.hasErrors('manager')}">
+                        </p>
+                    </div>
+
+                    <div class="form-group mb-3">
                         <button class="btn btn-primary" type="submit">Редактировать</button>
 
                     </div>
                 </form>
+</div>
             </div>
         </div>
     </div>
 </div>
+
+
 </main>
 </body>
 </html>

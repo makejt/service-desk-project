@@ -4,6 +4,7 @@ import by.itstep.servicedeskproject.model.Role;
 import by.itstep.servicedeskproject.model.User;
 import by.itstep.servicedeskproject.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,7 +41,9 @@ public class UserController {
         }
 
         if (user.getDepartment().equals("Управление цифрового развития") ||
-                user.getDepartment().equals("Отдел поддержки внутренних пользователей")) {
+                user.getDepartment().equals("Отдел поддержки внутренних пользователей") ||
+                user.getDepartment().equals("Организационный отдел"))
+        {
             user.setRoles(Collections.singleton(new Role(2, "ROLE_MANAGER")));
         } else {
             user.setRoles(Collections.singleton(new Role(1, "ROLE_USER")));}
@@ -49,10 +52,26 @@ public class UserController {
         userService.saveUser(user);
         return "redirect:/users";
     }
+
     @GetMapping("/users")
-    public String listRegisteredUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
+    public String showAllUsers(Model model){
+        return pagination(1, "name", "ASC", model);
+    }
+    @GetMapping("/users/page/{pageNo}")
+    public String pagination(@PathVariable(value = "pageNo") int pageNo,
+                             @RequestParam("sortField") String sortField,
+                             @RequestParam("sortDir") String sortDir,
+                             Model model) {
+        int pageSize = 10;
+        Page<User> page = userService.pagination(pageNo, pageSize, sortField, sortDir);
+        List<User> listUsers = page.getContent();
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("listUsers", listUsers);
         return "users";
     }
     @GetMapping("/user/update/{id}")

@@ -1,0 +1,130 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--&gt;-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Service Desk</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"-->
+<!--          rel="stylesheet"-->
+<!--          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"-->
+<!--          crossorigin="anonymous">-->
+<!--</head>-->
+<!--<body>-->
+<!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark">-->
+<!--    <div class="container-fluid">-->
+<!--        <a class="navbar-brand" href="#">Users</a>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--            <ul class="navbar-nav me-auto mb-2 mb-lg-0">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Добавить пользователя</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Выход из системы</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<!--<div class="container">-->
+<!--    <div class="row">-->
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Работа с обращениями</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        A:visited {
+        @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Combo&display=swap');
+            color: #030303;
+        }
+        a:link {
+            color: #030303;
+        }
+
+        A {
+            text-decoration: #00a6ff;
+        }
+        A:hover {
+            text-decoration: underline;
+            color: #169663;
+        }
+
+        .h1 {
+            color: #169663;;
+            font-size: xxx-large;
+            font-family: 'Combo', cursive;
+            text-shadow: 5px 5px 2px #a1e5c1;
+        }
+
+        .h2 {
+            color: #59c097;
+            text-align-last: center;
+        }
+
+    </style>
+
+</head>
+
+<header class="header">
+    <div class="container header__container">
+        <div>
+            <h1 class="h1">Service Desk</h1>
+        </div>
+
+        <nav class="navigation">
+            <a th:href="@{/main}"> Главное меню </a>
+            <a th:href="@{/logout}">Выйти из системы</a>
+            <br><br>
+        </nav>
+    </div>
+</header>
+
+<body>
+
+<main class="main" >
+    <div class="container main__container" th:style="'background-image:url(' + @{img/00.jpg} + '); background-repeat: no-repeat, repeat;'">
+
+        <h2 class="h2" th:align="center"> История заявок - СТРАНИЦА В СТАДИИ РАЗРАБОТКИ =) </h2>
+
+    </div>
+    <table style="width: 1200px", th:align="center" class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>rev</th>
+            <th>revtstmp</th>
+            <th>revtype</th>
+            <th>userName</th>
+            <th>тема</th>
+            <th>описание</th>
+            <th>менеджер</th>
+            <th>статус</th>
+            <th> пользователь</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="revision: ${revisions}">
+            <td th:text="${revision.id}"></td>
+            <td th:text="${revision.timestamp}"></td>
+            <td th:text="${revision.userName}"></td>
+
+            <td>
+
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</main>
+</body>
+</html>

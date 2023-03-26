@@ -34,7 +34,7 @@ public class User{
     private String login;
     @Column(nullable=false)
     private String phone;
-    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.MERGE)
     @JoinTable(
             name="users_roles",
             joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},

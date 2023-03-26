@@ -1,9 +1,11 @@
 package by.itstep.servicedeskproject.model;
 
+import by.itstep.servicedeskproject.util.CustomRevisionListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.envers.*;
 
 import java.sql.Timestamp;
 
@@ -11,6 +13,8 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Audited
+@AuditTable("appeals_audit")
 @Table(name = "appeals")
 public class Appeal {
     @Id
@@ -22,38 +26,25 @@ public class Appeal {
     private String description;
     @Column
     private String status;
+    @NotAudited
     @Column
     private Timestamp created;
+    @NotAudited
     @Column
     private Timestamp last_updated;
 
     @Column
     private String user;
-
     @Column
     private String manager;
 
-    // исполнитель заявки
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User manager;
+    @NotAudited
     @Column
     private Integer section;
-
 
     public Appeal(String theme, String description) {
         this.theme = theme;
         this.description = description;
 
-    }
-
-    public enum StatusType {
-        NEW ("new"),
-        IN_WORK ("in work"),
-        RESOLVED ("resolved");
-        private String name;
-        StatusType(String name) {
-            this.name = name;
-        }
     }
 }

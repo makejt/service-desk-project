@@ -2,9 +2,6 @@ package by.itstep.servicedeskproject.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.List;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -19,6 +16,7 @@ public class Role {
         private Integer role_id;
         @Column(nullable=false, unique=true)
         private String name;
+        
         @ManyToMany(mappedBy="roles")
         private Set<User> users;
 
@@ -26,6 +24,4 @@ public class Role {
                 this.role_id = role_id;
                 this.name = name;
         }
-
-
 }

@@ -1,17 +1,14 @@
 package by.itstep.servicedeskproject.service;
 
-import by.itstep.servicedeskproject.model.Role;
 import by.itstep.servicedeskproject.model.User;
 import by.itstep.servicedeskproject.repository.RoleRepository;
 import by.itstep.servicedeskproject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,13 +55,10 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
-
-
     @Override
     public void saveUser(User user) {
         userRepository.save(user);
     }
-
     @Override
     public void deleteUserById(int id) {
         userRepository.deleteById(id);
@@ -78,16 +72,16 @@ public class UserServiceImpl implements UserService {
         updUser.setDepartment(user.getDepartment());
         updUser.setLogin(user.getLogin());
         updUser.setEmail(user.getEmail());
-        updUser.setPassword(user.getPassword());
+        updUser.setPassword(passwordEncoder.encode(user.getPassword()));
         updUser.setPhone(user.getPhone());
         updUser.setPosition(user.getPosition());
         return updUser;
     }
-
     @Override
     public Page<User> pagination(int page, int size, String sortByField, String sortDir) {
-        return null;
+        Sort sort = sortDir.equalsIgnoreCase("ASC") ?
+                Sort.by(sortByField).ascending() : Sort.by(sortByField).descending();
+        Pageable pageable = PageRequest.of(page - 1, size, sort);
+        return userRepository.findAll(pageable);
     }
-
-
 }

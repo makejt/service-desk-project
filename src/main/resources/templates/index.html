@@ -5,34 +5,132 @@
 <head>
   <meta charset="UTF-8">
   <title>Service Desk</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-        crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
+    A:visited {
+    @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Combo&display=swap');
+      color: #030303;
+    }
+    .h1 {
+      color: #169663;
+      font-size: xxx-large;
+      font-family: 'Combo', cursive;
+      text-shadow: 5px 5px 2px #a1e5c1;
+    }
+
+    .h2, .h5 {
+      color: #169663;
+      text-align-last: center;
+    }
+  </style>
+
 </head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Registration and Login System</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/login}">Login</a>
-        </li>
-      </ul>
+
+<header class="header">
+  <div class="container header__container">
+    <div>
+      <h1 class="h1">Service Desk</h1>
     </div>
+
   </div>
-</nav>
-<div class="container">
-  <div class="row">
-    <h1 class="text-center"> Welcome to Registration and Login System </h1>
+</header>
+
+<body>
+
+<main class="main" >
+  <div class="container main__container" th:style="'background-image:url(' + @{img/00.jpg} + '); background-repeat: no-repeat, repeat;'">
+
+
+    <TABLE style="width: 100%">
+      <TR>
+        <TD style="width: 15%">
+          <div th:align="right">
+            <img th:src="@{img/0.jpg}"  width="350" height="300" alt="">
+          </div>
+        </TD>
+        <TD style="width: 70%">
+          <div th:align="center">
+
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 offset-md-3">
+                  <div th:if="${param.error}">
+                    <div class="alert alert-danger">Invalid Email and Password.</div>
+                  </div>
+                  <div th:if="${param.logout}">
+                    <div class="alert alert-success">You have been logged out.</div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header">
+                      <h2 class="h2">Вход в Service Desk</h2>
+                    </div>
+                    <div class="card-body">
+                      <form
+                              method="post"
+                              th:action="@{/login}"
+                              class="form-horizontal"
+                              role="form"
+                      >
+                        <div class="mb-3">
+                          <label for="username" class="control-label">Email *</label>
+                          <input type="text"
+                                 id="username"
+                                 name="username"
+                                 class="form-control"
+                                 placeholder="Email"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <label for="password" class="control-label">Password *</label>
+                          <input type="password"
+                                 id="password"
+                                 name="password"
+                                 class="form-control"
+                                 placeholder="Password"
+                          />
+                        </div>
+
+                        <div class="mb-3">
+                          <button type="submit" class="btn btn-primary">Войти</button> <br>
+                          <span> Не зарегистрированы?
+                            <a style="color:#169663;" th:href="@{/register}"> Регистрация</a>
+                        </span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </TD>
+
+        <TD style="width: 15%">
+          <div th:align="right">
+            <img th:src="@{img/0-1.jpg}" width="350" height="300" alt="">
+          </div>
+        </TD>
+
+      </TR>
+    </TABLE>
+
   </div>
-</div>
+</main>
+
+<h2 class="h2">
+  Добро пожаловать в Менеджер задач - Service Desk! <br>
+  Теперь у вас будет порядок в делах, экономия времени и контроль над задачами
+</h2><br><br>
+
+<h5 class="h5">
+  Если возникнут трудности в работе Service Desk, пишите в техническую поддержку super_admin@bnb.by. <br>
+  Ваши обращения помогают сделать сервис еще лучше!<br><br>
+
+  С уважением, команда Service Desk
+</h5>
+
 </body>
 </html>

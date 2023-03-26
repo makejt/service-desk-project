@@ -34,6 +34,7 @@ public class SpringSecurity {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/home").permitAll()
                                 .requestMatchers("/appeals").permitAll()
+                                .requestMatchers("/history").permitAll()
                                 .requestMatchers("/appeals/**").permitAll()
                                 .requestMatchers("/main").permitAll()
                                 .requestMatchers("/add/**").permitAll()
@@ -42,12 +43,17 @@ public class SpringSecurity {
                                 .requestMatchers("/appeals/close/**").hasAnyRole("ADMIN", "MANAGER")
                                 .requestMatchers("/appeals/delete/**").permitAll()
                                 .requestMatchers("/appeals/update/**").hasRole("USER")
+                                .requestMatchers("/appeals/save_admin/**").hasRole("ADMIN")
                                 .requestMatchers("/save/**").permitAll()
                                 .requestMatchers("/user/delete/**").hasRole("ADMIN")
                                 .requestMatchers("/user/update/**").hasRole("ADMIN")
+                                .requestMatchers("/users/page/**").hasRole("ADMIN")
                                 .requestMatchers("/user/save/**").hasRole("ADMIN")
                                 .requestMatchers("/img/**").permitAll()
                                 .requestMatchers("/users").hasRole("ADMIN")
+                                .requestMatchers("/css/style.css","/js/bootstrap.js","/css/**").permitAll()
+                                .requestMatchers("/appeals/history/").permitAll()
+                                .requestMatchers("/appeals/history/").hasAnyRole("ADMIN", "MANAGER")
 
                 ).formLogin(
                         form -> form
